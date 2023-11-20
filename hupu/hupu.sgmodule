@@ -1,0 +1,26 @@
+#!name=虎扑
+#!desc=虎扑去广告
+#!system=ios
+
+[Rule]
+URL-REGEX,^https://goblin\.hupu\.com/[^/]+/[^/]+/interfaceAd/, REJECT
+HOST,adx.hupu.com, REJECT
+HOST,adx-api.hupu.com, REJECT
+HOST,goblin.hupu.com, REJECT
+HOST-SUFFIX,cc.dace.hupu.com, REJECT
+HOST-SUFFIX,orz.hupu.com, REJECT
+HOST-SUFFIX,goblin.hupu.com, REJECT
+HOST-SUFFIX,adx.hupu.com, REJECT
+HOST-SUFFIX,adx-api.hupu.com, REJECT
+
+[URL Rewrite]
+^https?:\/\/du\.hupucdn\.com\/\w+h\d{4} - reject-img
+^https?:\/\/games\.mobileapi\.hupu\.com\/.+?\/(interfaceAdMonitor|interfaceAd)\/ - reject
+^https?:\/\/games\.mobileapi\.hupu\.com\/.+?\/(search|interfaceAdMonitor|status|hupuBbsPm)/(hotkey|init|hupuBbsPm)\. - reject-img
+^https?:\/\/games\.mobileapi\.hupu\.com\/.+?\/status\/init - reject
+^https?:\/\/games\.mobileapi\.hupu\.com\/\d\/(?:\d\.){2}\d\/status\/init - reject
+^https?:\/\/gobli\.hupu\.com\/.+\/interfaceAd\/getOther - reject
+
+[MITM]
+hostname = %APPEND% 
+*.hupu.com
